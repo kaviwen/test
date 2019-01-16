@@ -1,0 +1,174 @@
+<%inherit file="/base.html"/>
+    <%block name="content">
+
+            <div class="king-content-wrap">
+                <div class="king-layout1-content" style="margin-left: 216px;">
+                    <!-- <div class="king-page-topbar pl20 pr20 {{ marginStyle }}"> -->
+                    <div class="king-page-topbar ">
+                        <h3 class="king-topbar-title mb0">
+                            <span></span>
+                        </h3>
+                        <ul class="breadcrumb king-breadcrumb pl0 bg-transparent">
+                            <li><a href="/home_page">首页</a></li>
+                            <li><a href="/home_page">集群概况</a></li>
+                        </ul>
+                    </div>
+                    <!-- 面板 编辑 开始 -->
+                    <!-- 面板 编辑 结束 -->
+					<h3></h3>
+                    <form class="form-horizontal">
+                        <div class="container-fluid mb0 ">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group clearfix ">
+                                        <label class="col-sm-3 control-label bk-lh30 pt0">集群：</label>
+                                        <div class="col-sm-9">
+                                            <select name="" id="" class="form-control bk-valign-top">
+                                                <option value="选择项1">选择项1</option>
+                                                <option value="选择项2">选择项2</option>
+                                                <option value="选择项3">选择项3</option>
+                                                <option value="选择项4">选择项4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4"></div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="panel panel-default mb0">
+                        <div class="panel-heading"> 集群总览 </div>
+                        <div class="panel-body">
+                            <div class="container-fluid mb0 ">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="panel mb0 panel-box info-box">
+                                            <div class="panel-left panel-item bg-success"> <i class="fa fa-rocket text-large stat-icon"></i> </div>
+                                            <div class="panel-right panel-item bg-reverse">
+                                                <p class="f36 no-margin">10
+                                                    
+                                                </p>
+                                                <p class="text-muted no-margin">
+                                                    <span>云主机数量</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- 设置面板Start -->
+                                        <!-- 设置面板End -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="panel mb0 panel-box info-box">
+                                            <div class="panel-left panel-item bg-success"> <i class="fa fa-rocket text-large stat-icon"></i> </div>
+                                            <div class="panel-right panel-item bg-reverse">
+                                                <p class="f36 no-margin">2
+                                        
+                                                </p>
+                                                <p class="text-muted no-margin">
+                                                    <span>超过阀值数量</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- 设置面板Start -->
+                                        <!-- 设置面板End -->
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default mb0">
+                        <div class="panel-heading"> 近7天超过阀值主机数量统计 </div>
+                        <div class="panel-body">
+                            <div style="height: 300px; -webkit-tap-highlight-color: transparent; user-select: none; background-color: rgba(0, 0, 0, 0); cursor: default;" id="chart_1542792690043" class="king-chart-box chart-area " _echarts_instance_="1542790683042"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content end -->
+        </div>
+    </div>
+    </%block>   
+    <script>
+        $(function(){
+             var li = $('.navi li');
+             li.each(function(){
+             $(this).click(function(){
+             if( $(this).hasClass('c-open')){
+                $(this).find('ul').slideUp(350);
+                $(this).removeClass('c-open');
+             }else{
+               $(this).find('ul').slideDown(350);
+               $(this).addClass('c-open');
+               }
+              })
+           });
+        })
+    </script>
+    <script>
+        function createEStandLineChart(conf){    
+            var myChart = echarts.init(document.getElementById(conf.selector));
+            var legendData = []
+            for(var i=0; i < conf.data.series.length;i++){
+                legendData.push(conf.data.series[i].name)
+            }
+            myChart.setOption({
+                tooltip : {
+                    trigger: 'axis'
+                },
+                legend: {
+                    y: 'bottom',
+                    data:legendData
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {show: true, type: ['bar','line']},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                xAxis : [
+                    {
+                        type : 'category',
+                        data : conf.data.xAxis
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value',
+                        splitArea : {show : true}
+                    }
+                ],
+                series : conf.data.series
+            });
+         }
+        function initEStandLineChart(conf){
+            $.ajax({
+                url: conf.url,
+                type: 'GET',
+                dataType: conf.dataType,
+                success: function(res){
+                    //获取数据成功
+                    if (res.result){
+                        createEStandLineChart({
+                            selector: conf.containerId, // 图表容器
+                            data: res.data, // 图表数据
+                        });
+                    }
+                }
+            })
+        }
+    </script>
+    <script>
+        $(function(){
+            initEStandLineChart({
+                url: 'https://magicbox.bk.tencent.com/static_api/v3/components/chart3/demo.json',
+                dataType: 'json',
+                containerId: 'chart_1542792690043'
+            });   
+        });
+    </script>

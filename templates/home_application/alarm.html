@@ -1,0 +1,207 @@
+<%inherit file="/base.html"/>
+    <%block name="content">
+            <!-- sidebar end -->
+            <!-- content start -->
+            <div class="king-content-wrap">
+                <div class="king-layout1-content" style="margin-left: 216px;">
+                    <div class="container-fluid mb0 ">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- <div class="king-page-topbar pl20 pr20 {{ marginStyle }}"> -->
+                                <div class="king-page-topbar ">
+                                    <h3 class="king-topbar-title mb0">
+                                        <span></span>
+                                    </h3>
+                                    <ul class="breadcrumb king-breadcrumb pl0 bg-transparent">
+                                        <li><a href="/host_used">性能管理</a></li>
+                                        <li><a href="/alarm">性能告警</a></li>
+                                    </ul>
+                                </div>
+                                <!-- 面板 编辑 开始 -->
+                                <!-- 面板 编辑 结束 -->
+                                <h3></h3>
+                                
+                                <div class="panel-body">
+                                        <div class="container-fluid mb0 ">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group ">
+                                                        <label>开始时间：</label>
+                                                        <input type="text" class="form-control" id="" placeholder="提示信息"> </div>
+                                                    <form class="form-vertical p15">
+                                                        <div class="form-group ">
+                                                            <label>结束时间：</label>
+                                                            <input type="text" class="form-control" id="" placeholder="提示信息"> </div>
+                                                    </form>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group clearfix ">
+                                                            <label class="col-sm-3 control-label bk-lh30 pt0">告警类型：</label>
+                                                            <div class="col-sm-9">
+                                                                <select name="" id="" class="form-control bk-valign-top">
+                                                                    <option value="选择项1">选择项1</option>
+                                                                    <option value="选择项2">选择项2</option>
+                                                                    <option value="选择项3">选择项3</option>
+                                                                    <option value="选择项4">选择项4</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group clearfix ">
+                                                            <label class="col-sm-3 control-label bk-lh30 pt0">告警状态：</label>
+                                                            <div class="col-sm-9">
+                                                                <select name="" id="" class="form-control bk-valign-top">
+                                                                    <option value="选择项1">选择项1</option>
+                                                                    <option value="选择项2">选择项2</option>
+                                                                    <option value="选择项3">选择项3</option>
+                                                                    <option value="选择项4">选择项4</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <form class="form-horizontal">
+                                                 <div class="form-group clearfix ">
+                                                    <label class="col-sm-3 control-label bk-lh30 pt0">集群：</label>
+                                                    <div class="col-sm-9">
+                                                        <select name="" id="" class="form-control bk-valign-top">
+                                                            <option value="选择项1">选择项1</option>
+                                                            <option value="选择项2">选择项2</option>
+                                                            <option value="选择项3">选择项3</option>
+                                                            <option value="选择项4">选择项4</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                    </form>
+                                                    <form class="form-horizontal">
+                                                <div class="form-group clearfix ">
+                                                    <label class="col-sm-3 control-label bk-lh30 pt0">云主机IP：</label>
+                                                    <div class="col-sm-9">
+                                                        <select name="" id="" class="form-control bk-valign-top">
+                                                            <option value="选择项1">选择项1</option>
+                                                            <option value="选择项2">选择项2</option>
+                                                            <option value="选择项3">选择项3</option>
+                                                            <option value="选择项4">选择项4</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>                                
+                                            <form class="form-horizontal">
+                                                <div class="form-group clearfix">
+                                                    <div class="col-sm-9 col-sm-offset-3">
+                                                    <h3></h3>
+                                                    <h3></h3>
+                                                        <button type="button" class="king-btn mr10  king-success">提交</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                </div>
+                                <div class="panel king-panel1 mb0  ">
+                                    <div class="panel-heading king-panel-head1 king-panel-top1">
+                                        <h3 class="panel-title">性能告警列表</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <table class="table mb0 pr15 ranger-box2  ">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 70px;">#</th>
+                                                    <th style="width: 15%;">告警名称</th>
+                                                    <th style="width: 15%;">产生时间</th>
+                                                    <th style="width: 15%;">恢复时间</th>
+                                                    <th style="width: 15%;">告警内容</th>
+                                                    <th style="width: 15%;">操作</th>
+    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="width: 70px;">1</td>
+                                                    <td style="width: 15%;">Ravi Kumar</td>
+                                                    <td style="width: 15%;">India</td>
+                                                    <td style="width: 15%;">23/12/2012</td>
+                                                    <td style="width: 15%;">Paid</td>
+                                                    <td>
+                                                        <button class="btn btn-xs btn-success"> <i class="glyphicon glyphicon-ok"></i> </button>
+                                                        <button class="btn btn-xs btn-warning"> <i class="glyphicon glyphicon-edit"></i> </button>
+                                                        <button class="btn btn-xs btn-danger"> <i class="glyphicon glyphicon-remove"></i> </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                      
+                                        <!-- 设置面板End -->
+                                        <div class="container-fluid mb0 ">
+                                            <div class="row">
+                                                <div class="col-md-4"></div>
+                                                <div class="col-md-8"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content end -->
+        </div>
+    </div>
+    </%block> 
+    <script>
+        $(function(){
+             var li = $('.navi li');
+             li.each(function(){
+             $(this).click(function(){
+             if( $(this).hasClass('c-open')){
+                $(this).find('ul').slideUp(350);
+                $(this).removeClass('c-open');
+             }else{
+               $(this).find('ul').slideDown(350);
+               $(this).addClass('c-open');
+               }
+              })
+           });
+        })
+    </script>
+    <script>
+        $(function(){
+                function renderTpl(str, cfg) {
+                    var re = /(#(.+?)#)/g;
+
+                    return str.replace(re, function() {
+                        var val = cfg[arguments[2]]+'';
+                        if(typeof val == 'undefined') {
+                            val = '';
+                        }
+                        return val;
+                    });
+                }
+
+                // 异步请求后台数据
+                $.ajax({
+                    url: 'https://magicbox.bk.tencent.com/static_api/v3/components/table7/data.json',
+                    type: 'GET',
+                    success: function(res){
+                        var _html = ' ';
+                        var list = res.items;
+                        var tpl = $('#tpl_15434770205422').html();
+                        var headerTpl =  $('#header_tpl_15434770205422').html();
+                        for (var i=0,len=list.length; i < len; i++){
+                            var item = list[i];
+                            _html += renderTpl(tpl, item)
+                        }
+                        $('.ranger-box2 tbody').html(_html);
+                        $('.ranger-box2 thead').html(renderTpl(headerTpl,res.catalogues));
+                    }
+                });
+            });
+    </script>
+</body>
+
+</html>

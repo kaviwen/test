@@ -1,0 +1,189 @@
+
+<%inherit file="/base.html"/>
+    <%block name="content">
+
+<body class="bg-white" data-bg-color="bg-white">
+    <div class="king-page-box">
+  
+
+            <div class="king-content-wrap">
+                <div class="king-layout2-main mt15" style="width:70%;">
+                    <form name="form1" id="form1">
+                       <div class="king-panel8 m15">
+                        <div class="king-panel8-header">
+                          <h3 class="king-panel8-title king-info">远程设备</h3>
+                        </div>
+                           <div class="king-panel8-content pt25">
+                               <div class="container-fluid mb0 ">
+                                   <div class="row">
+                                       <div class="col-md-4">
+                                           <div class="form-group clearfix ">
+                                               <label class="col-sm-3 control-label bk-lh30 pt0">IP：</label>
+                                               <div class="col-sm-9">
+                                                   <input type="text" class="form-control bk-valign-top" id="ip" name="ip" placeholder="请输入IP"> </div>
+                                           </div>
+                                           <div class="form-group clearfix ">
+                                               <label class="col-sm-3 control-label bk-lh30 pt0">账号：</label>
+                                               <div class="col-sm-9">
+                                                   <input type="text" class="form-control bk-valign-top" id="user" name="user" placeholder="请输入账号"> </div>
+                                           </div>
+                                           <div class="form-group clearfix ">
+                                               <label class="col-sm-3 control-label bk-lh30 pt0">密码：</label>
+                                               <div class="col-sm-9">
+                                                   <input type="password" class="form-control bk-valign-top" id="passwd" name="passwd" placeholder="请输入密码"> </div>
+                                           </div>
+                                           <div class="form-group clearfix">
+                                            <div class="col-sm-9 col-sm-offset-3">
+                                                <button type="button" class="king-btn mr10  king-success" onclick="sumit(this)">提交</button>
+                                            </div>
+                                       </div>
+
+                                   </div>  
+                               </div>
+                               <div class="form-group clearfix ">
+                                <label class="control-label col-sm-3 bk-lh30 pt0">连接类型：</label>
+                                <div class="col-sm-9">
+                                    <div class="radio pt0">
+                                        <label class="mr10">
+                                            <input type="radio" name="optionsRadios" id="radio1" class="bk-top5" value="passwd">
+                                            <span class="bk-lh30">密码</span>
+                                        </label>
+                                        <label class="mr10">
+                                            <input type="radio" name="optionsRadios" id="radio2" class="bk-top5" value="pravitekey">
+                                            <span class="bk-lh30">秘钥</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                               <table class="table mb0 pr15 ranger-box ">
+                                    <thead id="thead">
+                                        <th style="width:25%;" >IP</th>
+                                        <th style="width:25%;" >用户名</th>
+                                        <th style="width:25%;" >key</th>
+                                        <th style="width:25%;" >操作</th>
+ 
+ 
+                                    </thead>
+                                    <tbody id="tbody">
+                                        <tr>
+                                            <td colspan="6"> 没有数据 </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <template id="tpl_1526111412901">
+                                        <tr>
+                                            <td style="width:25%;">#ip#</td>       
+                                            <td style="width:25%;">#user#</td>
+                                            <td style="width:25%;">#passwd#</td>
+                                            <td style="width:25%;">
+                                                <button class="btn btn-xs btn-success"> <i class="glyphicon glyphicon-ok"></i> </button>
+                                                <button class="btn btn-xs btn-warning"   onclick="resize(this)"> <i class="glyphicon glyphicon-edit"></i> </button>
+                                                <button class="btn btn-xs btn-danger"> <i class="glyphicon glyphicon-remove"></i> </button>
+                                            </td>
+                    
+                                        </tr>
+                                    </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content end -->
+        </div>
+    </div>
+    </%block> 
+    <script>
+
+    function renderTpl(str, cfg) {
+        var re = /(#(.+?)#)/g;
+    
+        return str.replace(re, function() {
+        var val = cfg[arguments[2]]+'';
+        if(typeof val == 'undefined') {
+            val = '';
+        }
+        return val;
+                });
+            }
+
+    function test() {
+        
+        $.post('${SITE_URL}cpu_resize/', function(data){
+
+        }, 'json');     
+     }
+
+
+    function sumit(obj){
+        var user = $('#user').val();
+        var ip = $('#ip').val();
+        var passwd = $('#passwd').val();
+        debugger
+        if(document.getElementById("radio1").checked){
+            var radio=$('#radio1').val();
+        }
+        if(document.getElementById("radio2").checked)
+        {
+            var radio=$('#radio2').val();
+        }
+        
+        $('#tbody').html('');
+
+        $.post('${SITE_URL}get_monitor_list/', {'user': user, 'ip': ip,'passwd':passwd,'radio':radio}, function(data){
+            console.log(data)
+            debugger
+            if(data.result){
+                var _html = '';
+                var list = data.data;
+                var tpl = $('#tpl_1526111412901').html();
+                debugger
+                for (var i=0,len=list.length; i < len; i++){
+                    var item = list[i].fields;
+                    _html += renderTpl(tpl, item)
+                }
+                $('#tbody').html(_html);
+            }else{
+                alert("获取失败")
+            }
+            }, 'json');
+    }
+
+
+        $(function(){
+             var li = $('.navi li');
+             li.each(function(){
+             $(this).click(function(){
+             if( $(this).hasClass('c-open')){
+                $(this).find('ul').slideUp(350);
+                $(this).removeClass('c-open');
+             }else{
+               $(this).find('ul').slideDown(350);
+               $(this).addClass('c-open');
+               }
+              })
+           });
+        })
+
+      $(document).ready(function() {
+                var ip = $("#ip").val();
+                $('#exe_button').click(function(){
+                    //alert("${SITE_URL}app1/execorder/");
+                    $.ajax({
+                        url: "${SITE_URL}app1/execorder/",
+                        type: 'POST',
+                        data: $('#form1').serialize(),
+                        dataType: 'json',
+                        success: function(res){
+                            //获取数据成功
+                            if (res.result){
+                                //alert(res.data);
+                                $('#result').val(res.data);
+                            }
+                        }
+                    });
+                })
+            })
+    </script>
+
+</body>
+
