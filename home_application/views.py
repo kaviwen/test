@@ -28,7 +28,7 @@ def home_page(request):
 
 
 
-    return render_mako_context(request, '/home_application/home.html')
+    return render_mako_context(request, '${SITE_URL}home_application/home.html')
 def host(request):
     """
     首页
@@ -38,13 +38,13 @@ def flavor(request):
     """
     首页
     """
-    return render_mako_context(request, '${SITE_URL}/home_application/flavor.html')
+    return render_mako_context(request, '${SITE_URL}home_application/flavor.html')
 
 def remote(request):
     """
     首页
     """
-    return render_mako_context(request, '${SITE_URL}/home_application/remote2.html')
+    return render_mako_context(request, '${SITE_URL}home_application/remote2.html')
 
 
 def volume(request):
