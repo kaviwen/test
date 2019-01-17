@@ -4,7 +4,7 @@ from django.conf.urls import patterns
 
 urlpatterns = patterns(
     'home_application.views',
-    (r'^home_page/$', 'home'),
+    (r'^home_page/$', 'home_page'),
     (r'^host/$', 'host'),
     (r'^flavor/$', 'flavor'),
      (r'^volume/$', 'volume'),
@@ -13,7 +13,7 @@ urlpatterns = patterns(
     (r'^set/$', 'set'),
     (r'^operate/$', 'operate'),
     (r'^remote2/$', 'remote'),
-    (r'^$', 'hom'),
+    (r'^$', 'home_page'),
     (r'^get_biz_list/$', 'get_biz_list'),
     (r'^get_ip_by_bizid/$', 'get_ip_by_bizid'),
     (r'^execute_job/$', 'execute_job'),

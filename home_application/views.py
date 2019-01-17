@@ -33,25 +33,25 @@ def host(request):
     """
     首页
     """
-    return render_mako_context(request, '/home_application/host.html')
+    return render_mako_context(request, '${SITE_URL}home_application/host.html')
 def flavor(request):
     """
     首页
     """
-    return render_mako_context(request, '/home_application/flavor.html')
+    return render_mako_context(request, '${SITE_URL}/home_application/flavor.html')
 
 def remote(request):
     """
     首页
     """
-    return render_mako_context(request, '/home_application/remote2.html')
+    return render_mako_context(request, '${SITE_URL}/home_application/remote2.html')
 
 
 def volume(request):
     """
     首页
     """
-    return render_mako_context(request, '/home_application/volume.html')
+    return render_mako_context(request, '${SITE_URL}/home_application/volume.html')
 
 def host_used(request):
     """
