@@ -53,17 +53,17 @@ BK_PAAS_HOST = os.environ.get('BK_PAAS_HOST', BK_PAAS_HOST)
 SITE_URL = '/'
 # 运行模式， DEVELOP(开发模式)， TEST(测试模式)， PRODUCT(正式模式)
 RUN_MODE = 'DEVELOP'
-#if ENVIRONMENT.endswith('production'):
-#    RUN_MODE = 'PRODUCT'
-#    DEBUG = False
-#    SITE_URL = '/o/%s/' % APP_ID
-#elif ENVIRONMENT.endswith('testing'):
-#    RUN_MODE = 'TEST'
-#    DEBUG = False
-#    SITE_URL = '/t/%s/' % APP_ID
-#else:
-#    RUN_MODE = 'DEVELOP'
-#    DEBUG = True
+if ENVIRONMENT.endswith('production'):
+    RUN_MODE = 'PRODUCT'
+    DEBUG = False
+    SITE_URL = '/o/%s/' % APP_ID
+elif ENVIRONMENT.endswith('testing'):
+    RUN_MODE = 'TEST'
+    DEBUG = False
+    SITE_URL = '/t/%s/' % APP_ID
+else:
+    RUN_MODE = 'DEVELOP'
+    DEBUG = True
 
 
 try:
